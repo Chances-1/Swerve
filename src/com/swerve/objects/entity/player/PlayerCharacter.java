@@ -1,10 +1,10 @@
-package com.swerve.objects.player;
+package com.swerve.objects.entity.player;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-import com.swerve.objects.BaseEntity;
+import com.swerve.objects.entity.BaseEntity;
 import com.swerve.properties.Direction;
 
 public class PlayerCharacter extends BaseEntity{

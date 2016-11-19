@@ -1,4 +1,4 @@
-package com.swerve.panel;
+package com.swerve.display;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,11 +12,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 
-import com.swerve.objects.player.PlayerCharacter;
-import com.swerve.objects.stars.Starfield;
+import com.swerve.objects.entity.enemy.Enemy;
+import com.swerve.objects.entity.enemy.EnemyFactory;
+import com.swerve.objects.entity.player.PlayerCharacter;
+import com.swerve.objects.entity.stars.Starfield;
 import com.swerve.properties.Direction;
 
 public class Swerve extends BaseGame {
@@ -28,6 +31,7 @@ public class Swerve extends BaseGame {
 
 	private PlayerCharacter player;
 	private Starfield starfield;
+	private List<Enemy> enemies;
 
 	// temporary space for controls
 	private int xDirection = 0;
@@ -40,7 +44,8 @@ public class Swerve extends BaseGame {
 		// initialize starfield
 		initStarfield();
 
-		// TODO: initialize enemyFactory;
+		// TODO: initialize enemies
+		initEnemyList();
 
 		// initialize player character
 		initPlayerCharacter();
@@ -49,15 +54,11 @@ public class Swerve extends BaseGame {
 		initKeyboardControls();
 
 		// start the game proper
-		initEventListener();
-		initTimer();
+		initUpdatedEvents();
+		initUpdater();
 	}
 
-	/**
-	 * Timer Control
-	 */
-
-	private void initEventListener() {
+	private void initUpdatedEvents() {
 
 		eventListener = new ActionListener() {
 
@@ -74,62 +75,48 @@ public class Swerve extends BaseGame {
 			}
 		};
 	}
-
-	private void initTimer() {
+	private void initUpdater() {
 		fpsTimer.setDelay(msPerFrame);
 		fpsTimer.addActionListener(eventListener);
 		fpsTimer.start();
 	}
 
-	/**
-	 * Background methods
-	 */
-
-	private void drawBackground(Graphics2D g2d) {
-		this.setBackground(Color.BLACK);
-	}
-
-	/**
-	 * Player methods
-	 */
-
 	private void initPlayerCharacter() {
 
 		player = new PlayerCharacter(windowWidth / 2, windowHeight / 2, 30, 30, windowWidth, windowHeight);
 	}
-
 	private void updatePlayerCharacter() {
 
 		player.updatePlayerCharacter(Direction.getValue(xDirection, yDirection));
 	}
-
 	private void drawPlayerCharacter(Graphics2D g2d) {
 
 		player.drawPlayerCharacter(g2d);
 	}
 
-	/**
-	 * Starfield methods
-	 */
-
 	private void initStarfield() {
 
 		starfield = new Starfield(windowWidth, windowHeight);
 	}
-
 	private void updateStarfield() {
 
 		starfield.updateStarfield(Direction.getFlipValue(xDirection, yDirection));
 	}
-
 	private void drawStarfield(Graphics2D g2d) {
 
-		drawBackground(g2d);
-		starfield.drawStarfield(g2d);
+		starfield.drawStarfield(g2d, this);
 	}
 
+	private void initEnemyList(){
+		
+	}
 	/**
 	 * Overrides
+	 */
+	
+	/**
+	 * Override the paint method so that the program
+	 * can paint its own things.
 	 */
 	@Override
 	public void paintComponent(Graphics g) {

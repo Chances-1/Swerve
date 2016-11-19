@@ -1,9 +1,11 @@
-package com.swerve.objects.stars;
+package com.swerve.objects.entity.stars;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+
+import javax.swing.JPanel;
 
 import com.swerve.properties.Direction;
 import com.swerve.utils.RNG;
@@ -46,8 +48,8 @@ public class Starfield {
 	 * Accessible Methods
 	 */
 
-	public void drawStarfield(Graphics2D g2d) {
-
+	public void drawStarfield(Graphics2D g2d, JPanel panel) {
+		panel.setBackground(Color.BLACK);
 		for (Star s : getStarfield()) {
 			s.drawStar(g2d);
 		}

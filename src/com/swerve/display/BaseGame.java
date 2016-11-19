@@ -1,4 +1,4 @@
-package com.swerve.panel;
+package com.swerve.display;
 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;

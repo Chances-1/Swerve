@@ -1,4 +1,4 @@
-package com.swerve.objects;
+package com.swerve.objects.entity;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
