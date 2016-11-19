@@ -1,23 +1,15 @@
 package com.swerve.display;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.Timer;
 
 import com.swerve.objects.entity.enemy.Enemy;
-import com.swerve.objects.entity.enemy.EnemyFactory;
 import com.swerve.objects.entity.player.PlayerCharacter;
 import com.swerve.objects.entity.stars.Starfield;
 import com.swerve.properties.Direction;
@@ -45,7 +37,7 @@ public class Swerve extends BaseGame {
 		initStarfield();
 
 		// TODO: initialize enemies
-		initEnemyList();
+		initEnemyFactory();
 
 		// initialize player character
 		initPlayerCharacter();
@@ -57,8 +49,8 @@ public class Swerve extends BaseGame {
 		initUpdatedEvents();
 		initUpdater();
 	}
-
-	private void initUpdatedEvents() {
+	
+	protected void initUpdatedEvents() {
 
 		eventListener = new ActionListener() {
 
@@ -75,20 +67,17 @@ public class Swerve extends BaseGame {
 			}
 		};
 	}
-	private void initUpdater() {
-		fpsTimer.setDelay(msPerFrame);
-		fpsTimer.addActionListener(eventListener);
-		fpsTimer.start();
-	}
 
 	private void initPlayerCharacter() {
 
 		player = new PlayerCharacter(windowWidth / 2, windowHeight / 2, 30, 30, windowWidth, windowHeight);
 	}
+
 	private void updatePlayerCharacter() {
 
 		player.updatePlayerCharacter(Direction.getValue(xDirection, yDirection));
 	}
+
 	private void drawPlayerCharacter(Graphics2D g2d) {
 
 		player.drawPlayerCharacter(g2d);
@@ -98,25 +87,27 @@ public class Swerve extends BaseGame {
 
 		starfield = new Starfield(windowWidth, windowHeight);
 	}
+
 	private void updateStarfield() {
 
 		starfield.updateStarfield(Direction.getFlipValue(xDirection, yDirection));
 	}
+
 	private void drawStarfield(Graphics2D g2d) {
 
 		starfield.drawStarfield(g2d, this);
 	}
 
-	private void initEnemyList(){
+	private void initEnemyFactory() {
 		
 	}
+
 	/**
 	 * Overrides
 	 */
-	
+
 	/**
-	 * Override the paint method so that the program
-	 * can paint its own things.
+	 * Override the paint method so that the program can paint its own things.
 	 */
 	@Override
 	public void paintComponent(Graphics g) {

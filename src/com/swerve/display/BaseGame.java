@@ -7,7 +7,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class BaseGame extends JPanel {
+public abstract class BaseGame extends JPanel {
 
 	/**
 	 * 
@@ -18,11 +18,11 @@ public class BaseGame extends JPanel {
 	Random rand = new Random();
 
 	// Basic variables
-	protected int windowHeight = 600;
-	protected int windowWidth = 800;
+	public static int windowHeight = 600;
+	public static int windowWidth = 800;
 
 	// FPS and timer Variables
-	protected int FPS = 60;
+	private int FPS = 60;
 	protected int currentFrame = 0;
 	protected int msPerFrame = 1000 / FPS;
 	protected Timer fpsTimer = new Timer(msPerFrame, null);
@@ -30,5 +30,13 @@ public class BaseGame extends JPanel {
 	// Listeners
 	protected ActionListener eventListener; // init in your game
 	protected KeyListener keyboardControls; // init in your game
+	
+	protected abstract void initUpdatedEvents();
+	
+	protected void initUpdater() {
+		fpsTimer.setDelay(msPerFrame);
+		fpsTimer.addActionListener(eventListener);
+		fpsTimer.start();
+	}
 
 }

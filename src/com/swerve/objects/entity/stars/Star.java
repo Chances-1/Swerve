@@ -26,11 +26,13 @@ public class Star extends BaseEntity {
 	 */
 
 	public Star(int x, int y) {
+		super();
 		int size = (RNG.randomNumber(minSize, maxSize));
 		this.setBounds(x, y, size, size);
 	}
 
 	public Star(int x, int y, int speed) {
+		super();
 		int size = (RNG.randomNumber(minSize, maxSize));
 		this.setBounds(x, y, size, size);
 		this.speed = speed;
