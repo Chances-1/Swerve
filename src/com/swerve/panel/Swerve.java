@@ -43,7 +43,7 @@ public class Swerve extends BaseGame {
 		// TODO: initialize enemyFactory;
 
 		// initialize player character
-		// initPlayerCharacter();
+		initPlayerCharacter();
 
 		// initialize game controls
 		initKeyboardControls();
