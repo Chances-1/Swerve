@@ -39,8 +39,8 @@ public class Starfield {
 	private void populate_starfield() {
 
 		for (int i = 0; i < numberOfStars; i++) {
-			starfield.add(new Star(RNG.randomNumber(fieldWidth), RNG.randomNumber(fieldHeight),
-					RNG.randomNumber(speedLower, speedUpper)));
+			starfield.add(new Star(RNG.selectRandomNumber(fieldWidth), RNG.selectRandomNumber(fieldHeight),
+					RNG.selectRandomNumber(speedLower, speedUpper)));
 		}
 	}
 
@@ -67,25 +67,25 @@ public class Starfield {
 			// x changes
 			if (s.x > fieldWidth) {
 				s.x = 0;
-				s.y = RNG.randomNumber(fieldHeight);
-				s.setSpeed(RNG.randomNumber(speedLower, speedUpper));
+				s.y = RNG.selectRandomNumber(fieldHeight);
+				s.setSpeed(RNG.selectRandomNumber(speedLower, speedUpper));
 			}
 			if (s.x < 0) {
 				s.x = fieldWidth;
-				s.y = RNG.randomNumber(fieldHeight);
-				s.setSpeed(RNG.randomNumber(speedLower, speedUpper));
+				s.y = RNG.selectRandomNumber(fieldHeight);
+				s.setSpeed(RNG.selectRandomNumber(speedLower, speedUpper));
 			}
 
 			// y changes
 			if (s.y > fieldHeight) {
-				s.x = RNG.randomNumber(fieldWidth);
+				s.x = RNG.selectRandomNumber(fieldWidth);
 				s.y = 0;
-				s.setSpeed(RNG.randomNumber(speedLower, speedUpper));
+				s.setSpeed(RNG.selectRandomNumber(speedLower, speedUpper));
 			}
 			if (s.y < 0) {
-				s.x = RNG.randomNumber(fieldWidth);
+				s.x = RNG.selectRandomNumber(fieldWidth);
 				s.y = fieldHeight;
-				s.setSpeed(RNG.randomNumber(speedLower, speedUpper));
+				s.setSpeed(RNG.selectRandomNumber(speedLower, speedUpper));
 			}
 		}
 	}

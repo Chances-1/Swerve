@@ -22,11 +22,13 @@ public class Enemy extends BaseEntity {
 	private Color defaultColour = Color.BLUE;
 
 	public Enemy(int windowWidth, int windowHeight) {
+		
 		super(windowWidth, windowHeight);
 	}
 
 	public Enemy(int windowWidth, int windowHeight, int defaultHeight, int defaultWidth, int defaultSpeed,
 			Color defaultColour) {
+		
 		super(windowWidth, windowHeight);
 		this.defaultHeight = defaultHeight;
 		this.defaultWidth = defaultWidth;
