@@ -22,7 +22,6 @@ public class Enemy extends BaseEntity {
 	private Color defaultColour = Color.BLUE;
 
 	public Enemy(int windowWidth, int windowHeight) {
-		
 		super(windowWidth, windowHeight);
 	}
 
