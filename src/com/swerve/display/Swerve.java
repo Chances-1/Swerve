@@ -21,7 +21,7 @@ public class Swerve extends BaseGame {
 	 */
 	private static final long serialVersionUID = -8549395005042709209L;
 
-	private PlayerCharacter player;
+	private static PlayerCharacter player;
 	private Starfield starfield;
 	private List<Enemy> enemies;
 
@@ -49,7 +49,7 @@ public class Swerve extends BaseGame {
 		initUpdatedEvents();
 		initUpdater();
 	}
-	
+
 	protected void initUpdatedEvents() {
 
 		eventListener = new ActionListener() {
@@ -70,7 +70,7 @@ public class Swerve extends BaseGame {
 
 	private void initPlayerCharacter() {
 
-		player = new PlayerCharacter(windowWidth / 2, windowHeight / 2, 30, 30, windowWidth, windowHeight);
+		player = new PlayerCharacter(100, windowHeight / 2, 30, 30, windowWidth, windowHeight);
 	}
 
 	private void updatePlayerCharacter() {
@@ -80,7 +80,7 @@ public class Swerve extends BaseGame {
 
 	private void drawPlayerCharacter(Graphics2D g2d) {
 
-		player.drawPlayerCharacter(g2d);
+		player.draw(g2d);
 	}
 
 	private void initStarfield() {
@@ -90,7 +90,7 @@ public class Swerve extends BaseGame {
 
 	private void updateStarfield() {
 
-		starfield.updateStarfield(Direction.getFlipValue(xDirection, yDirection));
+		starfield.updateStarfield(Direction.WEST);
 	}
 
 	private void drawStarfield(Graphics2D g2d) {
@@ -99,7 +99,7 @@ public class Swerve extends BaseGame {
 	}
 
 	private void initEnemyFactory() {
-		
+
 	}
 
 	/**
@@ -151,6 +151,9 @@ public class Swerve extends BaseGame {
 				case KeyEvent.VK_DOWN:
 					yDirection = 0;
 					break;
+				case KeyEvent.VK_SPACE:
+					player.fireBullet();
+					break;
 				default:
 					break;
 				}
@@ -170,6 +173,9 @@ public class Swerve extends BaseGame {
 					break;
 				case KeyEvent.VK_DOWN:
 					yDirection = 1;
+					break;
+				case KeyEvent.VK_SPACE:
+					player.fireBullet();
 					break;
 				default:
 					break;

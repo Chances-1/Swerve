@@ -5,8 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-// TODO: set to polygon...?
-public class BaseEntity extends Rectangle {
+public class BaseRectEntity extends Rectangle {
 
 	// base variables for all entities
 
@@ -28,12 +27,12 @@ public class BaseEntity extends Rectangle {
 	 */
 	
 	// nothing
-	protected BaseEntity(){
+	protected BaseRectEntity(){
 		
 	}
 	
 	// no image
-	protected BaseEntity(int windowWidth, int windowHeight){
+	protected BaseRectEntity(int windowWidth, int windowHeight){
 		this.windowWidth = windowWidth;
 		this.windowHeight = windowHeight;
 	}

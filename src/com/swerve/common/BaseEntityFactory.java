@@ -2,9 +2,9 @@ package com.swerve.common;
 
 import java.util.List;
 
-import com.swerve.objects.entity.BaseEntity;
+import com.swerve.objects.entity.BaseRectEntity;
 
-public abstract class BaseEntityFactory<T extends BaseEntity>{
+public abstract class BaseEntityFactory<T extends BaseRectEntity>{
 	
 	private int windowWidth;
 	

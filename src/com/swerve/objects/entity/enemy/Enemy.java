@@ -2,10 +2,10 @@ package com.swerve.objects.entity.enemy;
 
 import java.awt.Color;
 
-import com.swerve.objects.entity.BaseEntity;
+import com.swerve.objects.entity.BaseRectEntity;
 import com.swerve.properties.Direction;
 
-public class Enemy extends BaseEntity {
+public class Enemy extends BaseRectEntity {
 
 	/**
 	 * 
