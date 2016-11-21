@@ -22,6 +22,7 @@ public class Enemy extends BaseRectEntity {
 	private Color defaultColour = Color.BLUE;
 
 	public Enemy(int windowWidth, int windowHeight) {
+		
 		super(windowWidth, windowHeight);
 	}
 

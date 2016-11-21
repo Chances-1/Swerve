@@ -31,7 +31,7 @@ public class Swerve extends BaseGame {
 
 	public Swerve() {
 
-		this.setPreferredSize(new Dimension(windowWidth, windowHeight));
+		this.setPreferredSize(new Dimension(getWindowWidth(), getWindowHeight()));
 
 		// initialize starfield
 		initStarfield();
@@ -57,7 +57,7 @@ public class Swerve extends BaseGame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				currentFrame++;
-				if (currentFrame == 60)
+				if (currentFrame == getFPS())
 					currentFrame = 0;
 				if (null != starfield)
 					updateStarfield();
@@ -70,7 +70,7 @@ public class Swerve extends BaseGame {
 
 	private void initPlayerCharacter() {
 
-		player = new PlayerCharacter(100, windowHeight / 2, 30, 30, windowWidth, windowHeight);
+		player = new PlayerCharacter(100, getWindowHeight() / 2, 30, 30, getWindowWidth(), getWindowHeight());
 	}
 
 	private void updatePlayerCharacter() {
@@ -85,12 +85,14 @@ public class Swerve extends BaseGame {
 
 	private void initStarfield() {
 
-		starfield = new Starfield(windowWidth, windowHeight);
+		starfield = new Starfield(getWindowWidth(), getWindowHeight());
 	}
 
 	private void updateStarfield() {
 
 		starfield.updateStarfield(Direction.WEST);
+		// starfield.updateStarfield(Direction.getFlipValue(xDirection,
+		// yDirection));
 	}
 
 	private void drawStarfield(Graphics2D g2d) {
@@ -152,7 +154,6 @@ public class Swerve extends BaseGame {
 					yDirection = 0;
 					break;
 				case KeyEvent.VK_SPACE:
-					player.fireBullet();
 					break;
 				default:
 					break;

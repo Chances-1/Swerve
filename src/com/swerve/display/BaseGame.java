@@ -18,8 +18,8 @@ public abstract class BaseGame extends JPanel {
 	Random rand = new Random();
 
 	// Basic variables
-	public static int windowHeight = 600;
-	public static int windowWidth = 800;
+	private static int windowHeight = 600;
+	private static int windowWidth = 800;
 
 	// FPS and timer Variables
 	private int FPS = 60;
@@ -38,5 +38,43 @@ public abstract class BaseGame extends JPanel {
 		fpsTimer.addActionListener(eventListener);
 		fpsTimer.start();
 	}
+
+	public Random getRand() {
+		return rand;
+	}
+
+	public static int getWindowHeight() {
+		return windowHeight;
+	}
+
+	public static int getWindowWidth() {
+		return windowWidth;
+	}
+
+	public int getFPS() {
+		return FPS;
+	}
+
+	public int getCurrentFrame() {
+		return currentFrame;
+	}
+
+	public int getMsPerFrame() {
+		return msPerFrame;
+	}
+
+	public Timer getFpsTimer() {
+		return fpsTimer;
+	}
+
+	public ActionListener getEventListener() {
+		return eventListener;
+	}
+
+	public KeyListener getKeyboardControls() {
+		return keyboardControls;
+	}
+	
+	
 
 }
