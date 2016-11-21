@@ -39,4 +39,42 @@ public abstract class BaseGame extends JPanel {
 		fpsTimer.start();
 	}
 
+	public Random getRand() {
+		return rand;
+	}
+
+	public static int getWindowHeight() {
+		return windowHeight;
+	}
+
+	public static int getWindowWidth() {
+		return windowWidth;
+	}
+
+	public int getFPS() {
+		return FPS;
+	}
+
+	public int getCurrentFrame() {
+		return currentFrame;
+	}
+
+	public int getMsPerFrame() {
+		return msPerFrame;
+	}
+
+	public Timer getFpsTimer() {
+		return fpsTimer;
+	}
+
+	public ActionListener getEventListener() {
+		return eventListener;
+	}
+
+	public KeyListener getKeyboardControls() {
+		return keyboardControls;
+	}
+	
+	
+
 }
