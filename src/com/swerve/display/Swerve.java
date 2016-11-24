@@ -90,9 +90,10 @@ public class Swerve extends BaseGame {
 
 	private void initStarfield() {
 		
-		starfield = new Starfield();
-		starfield.setFieldHeight(getWindowHeight()*3/2);
-		starfield.setFieldWidth(getWindowWidth()*3/2);
+		// TODO: change to getter setter arrangement
+		starfield = new Starfield(getWindowHeight()*3/2, getWindowWidth()*3/2);
+		// TODO: set common flip for argument Direction d
+		starfield.setMovementDirection(Direction.WEST);
 	}
 
 	private void initEnemyFactory() {
@@ -111,8 +112,6 @@ public class Swerve extends BaseGame {
 
 	private void updateStarfield() {
 		
-		// TODO: set common flip for argument Direction d
-		starfield.setMovementDirection(Direction.WEST);
 		starfield.update();
 	}
 
@@ -136,6 +135,7 @@ public class Swerve extends BaseGame {
 
 	@Override
 	public void paintComponent(Graphics g) {
+		
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 

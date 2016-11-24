@@ -2,7 +2,6 @@ package com.swerve.objects.entity.stars;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -12,7 +11,7 @@ import com.swerve.utils.RNG;
 
 public class Starfield {
 
-	private int numberOfStars = 600;
+	private int numberOfStars = 400;
 
 	private int fieldHeight = 600;
 
@@ -31,6 +30,14 @@ public class Starfield {
 		populate_starfield();
 	}
 	
+	public Starfield(int fieldHeight, int fieldWidth) {
+		
+		super();
+		this.fieldHeight = fieldHeight;
+		this.fieldWidth = fieldWidth;
+		populate_starfield();
+	}
+
 	/**
 	 * Private Methods
 	 */
@@ -61,7 +68,6 @@ public class Starfield {
 
 			s.setEntityMovementDirection(movementDirection);
 			
-			// update the position based on speed
 			s.update();
 
 			// x changes
@@ -89,11 +95,6 @@ public class Starfield {
 			}
 		}
 	}
-
-	/*
-	 * =========================================
-	 * =========================================
-	 */
 
 	/**
 	 * Getters and Setters

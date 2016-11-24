@@ -66,6 +66,20 @@ public abstract class BaseRectEntity extends Rectangle {
 		return true;
 	}
 	
+	public void stopCrossBorder(){
+		// TODO: probably change this
+		// set bounds
+		if (x < 0)
+			x = 0;
+		if (y < 0)
+			y = 0;
+
+		if (x + width > windowWidth)
+			x = windowWidth - width;
+		if (y + height > windowHeight)
+			y = windowHeight - height;
+	}
+	
 	/**
 	 * Abstract Methods that SHOULD be overriden
 	 */

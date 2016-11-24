@@ -33,18 +33,8 @@ public class PlayerCharacter extends BaseRectEntity {
 	 * Updating and drawing
 	 */
 
-	public void updatePlayerCharacter(Direction d) {
-		movePlayer(d);
-		moveBullets();
-		if (isFiring) {
-			fireBullet();
-		}
-		if (currentCooldown > 0) {
-			currentCooldown--;
-		}
-	}
-
 	public void draw(Graphics2D g2d) {
+		
 		drawPlayerCharacter(g2d);
 		drawBullets(g2d);
 	}
@@ -62,6 +52,7 @@ public class PlayerCharacter extends BaseRectEntity {
 
 	public void fireBullet() {
 		if (bullets.size() < maxBullets && currentCooldown == 0) {
+			
 			Bullet b = new Bullet();
 
 			b.x = (int) (this.getX() + this.getWidth());
@@ -78,23 +69,6 @@ public class PlayerCharacter extends BaseRectEntity {
 	/**
 	 * movement and speed
 	 */
-
-	private void movePlayer(Direction d) {
-		this.x += getEntitySpeed() * d.getxDirection();
-		this.y += getEntitySpeed() * d.getyDirection();
-
-		// TODO: set to new method hasCrossedWindow
-		// set bounds
-		if (x < 0)
-			x = 0;
-		if (y < 0)
-			y = 0;
-
-		if (x + width > windowWidth)
-			x = windowWidth - width;
-		if (y + height > windowHeight)
-			y = windowHeight - height;
-	}
 
 	private void moveBullets() {
 		for (int i = 0; i < bullets.size(); i++) {
@@ -117,6 +91,7 @@ public class PlayerCharacter extends BaseRectEntity {
 	@Override
 	public void update() {
 		move();
+		stopCrossBorder();
 		if (isFiring) {
 			fireBullet();
 		}
