@@ -12,7 +12,7 @@ import com.swerve.utils.RNG;
 
 public class Starfield {
 
-	private int numberOfStars = 400;
+	private int numberOfStars = 600;
 
 	private int fieldHeight = 600;
 
@@ -23,15 +23,14 @@ public class Starfield {
 	private int speedLower = 4;
 
 	private int speedUpper = 10;
-
-	public Starfield(int width, int height) {
-		// note: to maintain persistence of star locations for at least half the
-		// screen size. This will result is a sparser looking starfield...
-		fieldWidth = width * 3 / 2;
-		fieldHeight = height * 3 / 2;
+	
+	private Direction movementDirection;
+	
+	public Starfield(){
+		
 		populate_starfield();
 	}
-
+	
 	/**
 	 * Private Methods
 	 */
@@ -39,8 +38,8 @@ public class Starfield {
 	private void populate_starfield() {
 
 		for (int i = 0; i < numberOfStars; i++) {
-			starfield.add(new Star(RNG.selectRandomNumber(fieldWidth), RNG.selectRandomNumber(fieldHeight),
-					RNG.selectRandomNumber(speedLower, speedUpper)));
+			Star s = new Star(RNG.selectRandomNumber(fieldWidth), RNG.selectRandomNumber(fieldHeight));
+			starfield.add(s);
 		}
 	}
 
@@ -48,44 +47,45 @@ public class Starfield {
 	 * Accessible Methods
 	 */
 
-	public void drawStarfield(Graphics2D g2d, JPanel panel) {
+	public void draw(Graphics2D g2d, JPanel panel) {
+		
 		panel.setBackground(Color.BLACK);
 		for (Star s : getStarfield()) {
 			s.drawStar(g2d);
 		}
-
 	}
 
-	public void updateStarfield(Direction d) {
-
+	public void update() {
+		
 		for (Star s : starfield) {
 
+			s.setEntityMovementDirection(movementDirection);
+			
 			// update the position based on speed
-			s.x += s.getSpeed() * d.getxDirection();
-			s.y += s.getSpeed() * d.getyDirection();
+			s.update();
 
 			// x changes
 			if (s.x > fieldWidth) {
 				s.x = 0;
 				s.y = RNG.selectRandomNumber(fieldHeight);
-				s.setSpeed(RNG.selectRandomNumber(speedLower, speedUpper));
+				s.setEntitySpeed(RNG.selectRandomNumber(speedLower, speedUpper));
 			}
 			if (s.x < 0) {
 				s.x = fieldWidth;
 				s.y = RNG.selectRandomNumber(fieldHeight);
-				s.setSpeed(RNG.selectRandomNumber(speedLower, speedUpper));
+				s.setEntitySpeed(RNG.selectRandomNumber(speedLower, speedUpper));
 			}
 
 			// y changes
 			if (s.y > fieldHeight) {
 				s.x = RNG.selectRandomNumber(fieldWidth);
 				s.y = 0;
-				s.setSpeed(RNG.selectRandomNumber(speedLower, speedUpper));
+				s.setEntitySpeed(RNG.selectRandomNumber(speedLower, speedUpper));
 			}
 			if (s.y < 0) {
 				s.x = RNG.selectRandomNumber(fieldWidth);
 				s.y = fieldHeight;
-				s.setSpeed(RNG.selectRandomNumber(speedLower, speedUpper));
+				s.setEntitySpeed(RNG.selectRandomNumber(speedLower, speedUpper));
 			}
 		}
 	}
@@ -146,5 +146,13 @@ public class Starfield {
 
 	public void setSpeedUpper(int speedUpper) {
 		this.speedUpper = speedUpper;
+	}
+
+	public Direction getMovementDirection() {
+		return movementDirection;
+	}
+
+	public void setMovementDirection(Direction movementDirection) {
+		this.movementDirection = movementDirection;
 	}
 }

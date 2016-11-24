@@ -21,9 +21,9 @@ public class Swerve extends BaseGame {
 	 */
 	private static final long serialVersionUID = -8549395005042709209L;
 
-	private static PlayerCharacter player;
-	private Starfield starfield;
-	private List<Enemy> enemies;
+	private static PlayerCharacter player = null;
+	private Starfield starfield = null;
+	private List<Enemy> enemies = null;
 
 	// temporary space for controls
 	private int xDirection = 0;
@@ -50,6 +50,10 @@ public class Swerve extends BaseGame {
 		initUpdater();
 	}
 
+	/**
+	 * inits
+	 */
+
 	protected void initUpdatedEvents() {
 
 		eventListener = new ActionListener() {
@@ -63,6 +67,8 @@ public class Swerve extends BaseGame {
 					updateStarfield();
 				if (null != player)
 					updatePlayerCharacter();
+				if (null != enemies)
+					updateEnemies();
 				repaint();
 			}
 		};
@@ -70,34 +76,23 @@ public class Swerve extends BaseGame {
 
 	private void initPlayerCharacter() {
 
-		player = new PlayerCharacter(100, getWindowHeight() / 2, 30, 30, getWindowWidth(), getWindowHeight());
-	}
-
-	private void updatePlayerCharacter() {
-
-		player.updatePlayerCharacter(Direction.getValue(xDirection, yDirection));
-	}
-
-	private void drawPlayerCharacter(Graphics2D g2d) {
-
-		player.draw(g2d);
+		player = new PlayerCharacter();
+		
+		player.setX(100);
+		player.setY(getWindowHeight()/2);
+		player.setEntityWidth(30);
+		player.setEntityHeight(30);
+		player.setWindowHeight(getWindowHeight());
+		player.setWindowWidth(getWindowWidth());
+		// TODO: move closer to source
+		player.setEntitySpeed(4);
 	}
 
 	private void initStarfield() {
-
-		starfield = new Starfield(getWindowWidth(), getWindowHeight());
-	}
-
-	private void updateStarfield() {
-
-		starfield.updateStarfield(Direction.WEST);
-		// starfield.updateStarfield(Direction.getFlipValue(xDirection,
-		// yDirection));
-	}
-
-	private void drawStarfield(Graphics2D g2d) {
-
-		starfield.drawStarfield(g2d, this);
+		
+		starfield = new Starfield();
+		starfield.setFieldHeight(getWindowHeight()*3/2);
+		starfield.setFieldWidth(getWindowWidth()*3/2);
 	}
 
 	private void initEnemyFactory() {
@@ -105,12 +100,40 @@ public class Swerve extends BaseGame {
 	}
 
 	/**
-	 * Overrides
+	 * updates
 	 */
 
+	private void updatePlayerCharacter() {
+		
+		player.setEntityMovementDirection(Direction.getValue(xDirection, yDirection));
+		player.update();
+	}
+
+	private void updateStarfield() {
+		
+		// TODO: set common flip for argument Direction d
+		starfield.setMovementDirection(Direction.WEST);
+		starfield.update();
+	}
+
+	private void updateEnemies() {
+
+	}
+
 	/**
-	 * Override the paint method so that the program can paint its own things.
+	 * draws
 	 */
+
+	private void drawPlayerCharacter(Graphics2D g2d) {
+
+		player.draw(g2d);
+	}
+
+	private void drawStarfield(Graphics2D g2d) {
+
+		starfield.draw(g2d, this);
+	}
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -125,7 +148,6 @@ public class Swerve extends BaseGame {
 	/**
 	 * Keyboard Controls
 	 */
-
 	private void initKeyboardControls() {
 
 		this.setFocusable(true); // set to make sure panel is focused (needed
@@ -154,6 +176,7 @@ public class Swerve extends BaseGame {
 					yDirection = 0;
 					break;
 				case KeyEvent.VK_SPACE:
+					player.setIsFiring(false);
 					break;
 				default:
 					break;
@@ -176,7 +199,7 @@ public class Swerve extends BaseGame {
 					yDirection = 1;
 					break;
 				case KeyEvent.VK_SPACE:
-					player.fireBullet();
+					player.setIsFiring(true);
 					break;
 				default:
 					break;

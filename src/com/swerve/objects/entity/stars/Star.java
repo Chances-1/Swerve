@@ -18,24 +18,35 @@ public class Star extends BaseRectEntity {
 	private int minSize = 1;
 	private int maxSize = 2;
 
-	// speed of star (default 1)
-	private int speed = 5;
-
-	/**
-	 * Getters and Setters
-	 */
+	private int defaultLowerSpeed = 2;
+	private int defaultUpperSpeed = 10;
 
 	public Star(int x, int y) {
 		super();
-		int size = (RNG.selectRandomNumber(minSize, maxSize));
-		this.setBounds(x, y, size, size);
+		setEntityHeight(RNG.selectRandomNumber(minSize, maxSize));
+		setEntityWidth(getEntityHeight());
+		this.setBounds(x, y, getEntityWidth(), getEntityHeight());
+		this.entitySpeed = RNG.selectRandomNumber(defaultLowerSpeed, defaultUpperSpeed);
+	}
+	
+	public Star(int x, int y, int minSize, int maxSize) {
+		super();
+		setEntityHeight(RNG.selectRandomNumber(minSize, maxSize));
+		setEntityWidth(getEntityHeight());
+		this.setBounds(x, y, getEntityWidth(), getEntityHeight());
+		this.entitySpeed = RNG.selectRandomNumber(defaultLowerSpeed, defaultUpperSpeed);
 	}
 
-	public Star(int x, int y, int speed) {
+	public Star(int x, int y, int entitySpeed) {
 		super();
-		int size = (RNG.selectRandomNumber(minSize, maxSize));
-		this.setBounds(x, y, size, size);
-		this.speed = speed;
+		setEntityHeight(RNG.selectRandomNumber(minSize, maxSize));
+		setEntityWidth(getEntityHeight());
+		this.setBounds(x, y, getEntityWidth(), getEntityHeight());
+		this.entitySpeed = entitySpeed;
+	}
+	
+	public void update(){
+		move();
 	}
 	
 	public void drawStar(Graphics2D g2d){
@@ -59,14 +70,5 @@ public class Star extends BaseRectEntity {
 	public void setMaxSize(int maxSize) {
 		this.maxSize = maxSize;
 	}
-
-	public int getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(int speed) {
-		this.speed = speed;
-	}
-
 
 }

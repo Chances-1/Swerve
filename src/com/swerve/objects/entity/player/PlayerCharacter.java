@@ -11,27 +11,21 @@ import com.swerve.properties.Direction;
 
 public class PlayerCharacter extends BaseRectEntity {
 
-	private int speed = 3;
-
 	private ArrayList<Bullet> bullets;
 
 	private int currentCooldown = 0;
-	
+
 	private int cooldown = 10;
-	
+
 	private int maxBullets = 20;
+
+	private Boolean isFiring = false;
 
 	/**
 	 * Construction
 	 */
 
-	public PlayerCharacter(int x, int y, int width, int height, int windowWidth, int windowHeight) {
-		super(windowWidth, windowHeight);
-
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+	public PlayerCharacter() {
 		this.bullets = new ArrayList<Bullet>();
 	}
 
@@ -42,6 +36,9 @@ public class PlayerCharacter extends BaseRectEntity {
 	public void updatePlayerCharacter(Direction d) {
 		movePlayer(d);
 		moveBullets();
+		if (isFiring) {
+			fireBullet();
+		}
 		if (currentCooldown > 0) {
 			currentCooldown--;
 		}
@@ -65,8 +62,15 @@ public class PlayerCharacter extends BaseRectEntity {
 
 	public void fireBullet() {
 		if (bullets.size() < maxBullets && currentCooldown == 0) {
-			bullets.add(new Bullet((int) (this.getX() + this.getWidth()), (int) this.getCenterY(), windowWidth,
-					windowHeight));
+			Bullet b = new Bullet();
+
+			b.x = (int) (this.getX() + this.getWidth());
+			b.y = (int) this.getCenterY();
+			b.setWindowWidth(windowWidth);
+			b.setWindowHeight(windowHeight);
+			b.setEntityMovementDirection(Direction.EAST);
+
+			bullets.add(b);
 			currentCooldown = cooldown;
 		}
 	}
@@ -76,9 +80,10 @@ public class PlayerCharacter extends BaseRectEntity {
 	 */
 
 	private void movePlayer(Direction d) {
-		this.x += this.speed * d.getxDirection();
-		this.y += this.speed * d.getyDirection();
+		this.x += getEntitySpeed() * d.getxDirection();
+		this.y += getEntitySpeed() * d.getyDirection();
 
+		// TODO: set to new method hasCrossedWindow
 		// set bounds
 		if (x < 0)
 			x = 0;
@@ -93,12 +98,31 @@ public class PlayerCharacter extends BaseRectEntity {
 
 	private void moveBullets() {
 		for (int i = 0; i < bullets.size(); i++) {
-			bullets.get(i).move(Direction.EAST);
-			if (bullets.get(i).isOutOfBounds()) {
+			bullets.get(i).update();
+			if (!bullets.get(i).isVisible()) {
 				bullets.remove(i);
 				i--;
 			}
 		}
+	}
+
+	public Boolean getIsFiring() {
+		return isFiring;
+	}
+
+	public void setIsFiring(Boolean isFiring) {
+		this.isFiring = isFiring;
+	}
+
+	@Override
+	public void update() {
+		move();
+		if (isFiring) {
+			fireBullet();
+		}
+		moveBullets();
+		if (currentCooldown > 0)
+			currentCooldown--;
 	}
 
 }

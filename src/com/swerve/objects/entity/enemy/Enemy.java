@@ -12,14 +12,7 @@ public class Enemy extends BaseRectEntity {
 	 */
 	private static final long serialVersionUID = 5743749154513790285L;
 
-	private int defaultHeight = 8;
-	private int defaultWidth = 8;
-
-	private int defaultSpeed = 5;
-	
-	private Direction currentDirection;
-
-	private Color defaultColour = Color.BLUE;
+	private Color defaultColour = Color.RED;
 
 	public Enemy(int windowWidth, int windowHeight) {
 		
@@ -30,9 +23,16 @@ public class Enemy extends BaseRectEntity {
 			Color defaultColour) {
 		
 		super(windowWidth, windowHeight);
-		this.defaultHeight = defaultHeight;
-		this.defaultWidth = defaultWidth;
-		this.defaultSpeed = defaultSpeed;
+		setEntityHeight(defaultHeight);
+		setEntityWidth(defaultWidth);
+		setEntitySpeed(entitySpeed);
+		this.entitySpeed = defaultSpeed;
 		this.defaultColour = defaultColour;
 	}
+	
+	@Override
+	public void update(){
+		move();
+	}
+	
 }
