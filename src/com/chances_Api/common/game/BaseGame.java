@@ -26,22 +26,13 @@ public abstract class BaseGame extends JPanel {
 
 	// FPS and timer Variables
 	private int FPS = 60;
-	protected int currentFrame = 0;
-	protected int msPerFrame = 1000 / FPS;
-	protected Timer fpsTimer = new Timer(msPerFrame, null);
+	private int currentFrame = 0;
+	private int msPerFrame = 1000 / FPS;
 	private Resolution gameResolution = GameConstants.gameResolution;
 
-	// Listeners
-	// protected ActionListener eventListener; // init in your game
 	protected KeyListener keyboardControls; // init in your game
 
 	public abstract void update();
-
-	// protected void initUpdater() {
-	// fpsTimer.setDelay(msPerFrame);
-	// fpsTimer.addActionListener(eventListener);
-	// fpsTimer.start();
-	// }
 
 	public void updateResolution() {
 		GameConstants.gameResolution = gameResolution;
@@ -73,10 +64,6 @@ public abstract class BaseGame extends JPanel {
 		return msPerFrame;
 	}
 
-	public Timer getFpsTimer() {
-		return fpsTimer;
-	}
-
 	public KeyListener getKeyboardControls() {
 		return keyboardControls;
 	}
@@ -87,6 +74,10 @@ public abstract class BaseGame extends JPanel {
 
 	public void setGameResolution(Resolution gameResolution) {
 		this.gameResolution = gameResolution;
+	}
+
+	public void setCurrentFrame(int currentFrame) {
+		this.currentFrame = currentFrame;
 	}
 
 }

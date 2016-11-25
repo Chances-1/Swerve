@@ -50,17 +50,17 @@ public class Swerve extends BaseGame {
 		initKeyboardControls();
 
 	}
-
+	
 	/**
-	 * inits
+	 * Overrides
 	 */
 
 	@Override
 	public void update() {
 
-		currentFrame++;
-		if (currentFrame == getFPS()) {
-			currentFrame = 0;
+		setCurrentFrame(getCurrentFrame()+1);;
+		if (getCurrentFrame() == getFPS()) {
+			setCurrentFrame(0);
 		}
 		if (null != starfield)
 			updateStarfield();
@@ -71,6 +71,22 @@ public class Swerve extends BaseGame {
 		updateResolution();
 		repaint();
 	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+
+		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D) g;
+
+		if (null != starfield)
+			drawStarfield(g2d);
+		if (null != player)
+			drawPlayerCharacter(g2d);
+	}
+	
+	/**
+	 * Initializers
+	 */
 
 	private void initPlayerCharacter() {
 
@@ -95,55 +111,7 @@ public class Swerve extends BaseGame {
 	private void initEnemyFactory() {
 
 	}
-
-	/**
-	 * updates
-	 */
-
-	private void updatePlayerCharacter() {
-
-		player.setEntityMovementDirection(Direction.getValue(xDirection, yDirection));
-		player.update();
-	}
-
-	private void updateStarfield() {
-
-		starfield.update();
-	}
-
-	private void updateEnemies() {
-
-	}
-
-	/**
-	 * draws
-	 */
-
-	private void drawPlayerCharacter(Graphics2D g2d) {
-
-		player.draw(g2d);
-	}
-
-	private void drawStarfield(Graphics2D g2d) {
-
-		starfield.draw(g2d, this);
-	}
-
-	@Override
-	public void paintComponent(Graphics g) {
-
-		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D) g;
-
-		if (null != starfield)
-			drawStarfield(g2d);
-		if (null != player)
-			drawPlayerCharacter(g2d);
-	}
-
-	/**
-	 * Keyboard Controls
-	 */
+	
 	private void initKeyboardControls() {
 
 		this.setFocusable(true); // set to make sure panel is focused (needed
@@ -211,4 +179,42 @@ public class Swerve extends BaseGame {
 
 		this.addKeyListener(keyboardControls);
 	}
+
+	/**
+	 * Updates
+	 */
+
+	private void updatePlayerCharacter() {
+
+		player.setEntityMovementDirection(Direction.getValue(xDirection, yDirection));
+		player.update();
+	}
+
+	private void updateStarfield() {
+
+		starfield.update();
+	}
+
+	private void updateEnemies() {
+
+	}
+
+	/**
+	 * Draws
+	 */
+
+	private void drawPlayerCharacter(Graphics2D g2d) {
+
+		player.draw(g2d);
+	}
+
+	private void drawStarfield(Graphics2D g2d) {
+
+		starfield.draw(g2d, this);
+	}
+
+	private void drawEnemies(){
+		
+	}
+
 }
