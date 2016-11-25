@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import com.swerve.properties.Direction;
-import com.swerve.utils.RNG;
+import com.chances_Api.common.game.properties.enums.Direction;
+import com.chances_Api.common.utils.RNG;
 
 public class Starfield {
 

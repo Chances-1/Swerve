@@ -3,18 +3,19 @@ package com.swerve.objects.entity.enemy;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.swerve.common.BaseEntityFactory;
+import com.chances_Api.common.game.entity.factories.BaseEntityFactory;
 
 public class EnemyFactory extends BaseEntityFactory<Enemy> {
 
-	public EnemyFactory(int windowWidth, int windowHeight) {
-		super(windowWidth, windowHeight);
+	public EnemyFactory() {
 	}
 
 	@Override
 	protected Enemy create() {
 		
-		return new Enemy(getWindowWidth(), getWindowHeight());
+		Enemy e = new Enemy();
+		
+		return new Enemy();
 	}
 
 	@Override
@@ -23,7 +24,9 @@ public class EnemyFactory extends BaseEntityFactory<Enemy> {
 		ArrayList<Enemy> ls = new ArrayList<Enemy>();
 		int i = 0;
 		while (i < size) {
-			ls.add(new Enemy(getWindowWidth(), getWindowHeight()));
+			Enemy e = new Enemy();
+
+			ls.add(e);
 		}
 		return ls;
 	}

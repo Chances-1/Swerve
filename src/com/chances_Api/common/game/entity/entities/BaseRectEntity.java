@@ -1,11 +1,13 @@
-package com.swerve.objects.entity;
+package com.chances_Api.common.game.entity.entities;
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-import com.swerve.properties.Direction;
+import com.chances_Api.common.game.properties.constants.GameConstants;
+import com.chances_Api.common.game.properties.enums.Direction;
 
 public abstract class BaseRectEntity extends Rectangle {
 
@@ -20,10 +22,6 @@ public abstract class BaseRectEntity extends Rectangle {
 
 	private int currentSpriteFrame;
 
-	protected int windowWidth;
-
-	protected int windowHeight;
-
 	/**
 	 * Entity Variables
 	 */
@@ -31,6 +29,8 @@ public abstract class BaseRectEntity extends Rectangle {
 	protected int entitySpeed;
 
 	protected Direction entityMovementDirection = Direction.WEST;
+	
+	protected Color entityColor;
 
 	/**
 	 * Generic Constructor
@@ -39,12 +39,6 @@ public abstract class BaseRectEntity extends Rectangle {
 	// nothing
 	protected BaseRectEntity() {
 
-	}
-
-	// no image
-	protected BaseRectEntity(int windowWidth, int windowHeight) {
-		this.windowWidth = windowWidth;
-		this.windowHeight = windowHeight;
 	}
 	
 	/**
@@ -56,28 +50,58 @@ public abstract class BaseRectEntity extends Rectangle {
 		this.x += entitySpeed*entityMovementDirection.getxDirection();
 		this.y += entitySpeed*entityMovementDirection.getyDirection();
 	}
+	
+	public void stopCrossBorder(){
+		// set bounds
+		if (crossedWestBorder())
+			stopAtWestBorder();
+		if (crossedNorthBorder())
+			stopAtNorthBorder();
 
+		if (crossedEastBorder())
+			stopAtEastBorder();
+		if (crossedSouthBorder())
+			stopAtSouthBorder();
+	}
+	
 	public boolean isVisible() {
-		if (this.x > windowWidth || 				// right border
+		if (this.x > GameConstants.gameResolution.getWindowWidth() || 				// right border
 				(this.x + getEntityWidth()) < 0 || 	// left border
-				this.y > windowHeight || 			// bottom
+				this.y > GameConstants.gameResolution.getWindowHeight() || 			// bottom
 				(this.y + getEntityHeight()) < 0) 	// upper
 			return false;
 		return true;
 	}
 	
-	public void stopCrossBorder(){
-		// TODO: probably change this
-		// set bounds
-		if (x < 0)
-			x = 0;
-		if (y < 0)
-			y = 0;
+	
+	public boolean crossedWestBorder(){
+		return x < 0;
+	}
 
-		if (x + width > windowWidth)
-			x = windowWidth - width;
-		if (y + height > windowHeight)
-			y = windowHeight - height;
+	public boolean crossedEastBorder(){
+		return (x + width) > GameConstants.gameResolution.getWindowWidth();
+	}
+	
+	public boolean crossedNorthBorder(){
+		return y < 0;
+	}
+	
+	public boolean crossedSouthBorder(){
+		return y + height > GameConstants.gameResolution.getWindowHeight();
+	}
+	
+	
+	public void stopAtWestBorder(){
+		x = 0;
+	}
+	public void stopAtEastBorder(){
+		x = GameConstants.gameResolution.getWindowWidth() - width;
+	}
+	public void stopAtNorthBorder(){
+		y = 0;
+	}
+	public void stopAtSouthBorder(){
+		y = GameConstants.gameResolution.getWindowHeight() - height;
 	}
 	
 	/**
@@ -98,28 +122,12 @@ public abstract class BaseRectEntity extends Rectangle {
 		return currentSpriteFrame;
 	}
 
-	public int getWindowWidth() {
-		return windowWidth;
-	}
-
-	public int getWindowHeight() {
-		return windowHeight;
-	}
-
 	public void setSpritesheet(BufferedImage spritesheet) {
 		this.spritesheet = spritesheet;
 	}
 
 	public void setCurrentSpriteFrame(int currentSpriteFrame) {
 		this.currentSpriteFrame = currentSpriteFrame;
-	}
-
-	public void setWindowWidth(int windowWidth) {
-		this.windowWidth = windowWidth;
-	}
-
-	public void setWindowHeight(int windowHeight) {
-		this.windowHeight = windowHeight;
 	}
 
 	public int getEntityHeight() {
@@ -160,6 +168,14 @@ public abstract class BaseRectEntity extends Rectangle {
 
 	public void setY(int y){
 		this.y = y;
+	}
+
+	public Color getEntityColor() {
+		return entityColor;
+	}
+
+	public void setEntityColor(Color entityColor) {
+		this.entityColor = entityColor;
 	}
 
 }

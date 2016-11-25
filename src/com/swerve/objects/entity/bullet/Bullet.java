@@ -3,8 +3,8 @@ package com.swerve.objects.entity.bullet;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import com.swerve.objects.entity.BaseRectEntity;
-import com.swerve.properties.Direction;
+import com.chances_Api.common.game.entity.entities.BaseRectEntity;
+import com.chances_Api.common.game.properties.enums.Direction;
 
 public class Bullet extends BaseRectEntity {
 
@@ -18,8 +18,6 @@ public class Bullet extends BaseRectEntity {
 
 	private int defaultSpeed = 6;
 
-	private Color defaultColor = Color.BLUE;
-
 	// moving to empty constructor
 	public Bullet() {
 		setEntityHeight(defaultSize);
@@ -28,7 +26,7 @@ public class Bullet extends BaseRectEntity {
 	}
 
 	public void draw(Graphics2D g2d) {
-		g2d.setColor(defaultColor);
+		g2d.setColor(entityColor);
 		g2d.fill(this);
 	}
 
@@ -55,14 +53,6 @@ public class Bullet extends BaseRectEntity {
 
 	public void setDefaultSpeed(int defaultSpeed) {
 		this.defaultSpeed = defaultSpeed;
-	}
-
-	public Color getDefaultColor() {
-		return defaultColor;
-	}
-
-	public void setDefaultColor(Color defaultColor) {
-		this.defaultColor = defaultColor;
 	}
 
 	public String toDebugString() {

@@ -1,23 +1,19 @@
 package com.swerve.main;
 
-import java.awt.BorderLayout;
+import javax.swing.Timer;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
+import com.chances_Api.common.game.frame.BaseGameFrame;
 import com.swerve.display.Swerve;
 
 public class MainClass {
 	
+	public static Swerve swervePanel = new Swerve();
+	
 	public static void main(String[] args) {
 		
-		JFrame frame = new JFrame("Swerve");
-		Swerve swerve = new Swerve();
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().add((JPanel)swerve, BorderLayout.CENTER);
-		frame.pack();
-		frame.setVisible(true);
+		BaseGameFrame gf = new BaseGameFrame("Swerve", swervePanel);
+		Timer mainTimer = gf.getTimer();
+		mainTimer.start();
 	}
 
 }

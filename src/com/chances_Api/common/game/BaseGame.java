@@ -1,4 +1,4 @@
-package com.swerve.display;
+package com.chances_Api.common.game;
 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -6,6 +6,9 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import com.chances_Api.common.game.properties.constants.GameConstants;
+import com.chances_Api.common.game.properties.enums.Resolution;
 
 public abstract class BaseGame extends JPanel {
 
@@ -26,17 +29,24 @@ public abstract class BaseGame extends JPanel {
 	protected int currentFrame = 0;
 	protected int msPerFrame = 1000 / FPS;
 	protected Timer fpsTimer = new Timer(msPerFrame, null);
-	
+	private Resolution gameResolution = GameConstants.gameResolution;
+
 	// Listeners
-	protected ActionListener eventListener; // init in your game
+	// protected ActionListener eventListener; // init in your game
 	protected KeyListener keyboardControls; // init in your game
-	
-	protected abstract void initUpdatedEvents();
-	
-	protected void initUpdater() {
-		fpsTimer.setDelay(msPerFrame);
-		fpsTimer.addActionListener(eventListener);
-		fpsTimer.start();
+
+	public abstract void update();
+
+	// protected void initUpdater() {
+	// fpsTimer.setDelay(msPerFrame);
+	// fpsTimer.addActionListener(eventListener);
+	// fpsTimer.start();
+	// }
+
+	public void updateResolution() {
+		GameConstants.gameResolution = gameResolution;
+		setPreferredSize(gameResolution.getDimension());
+		this.revalidate();
 	}
 
 	public Random getRand() {
@@ -67,14 +77,16 @@ public abstract class BaseGame extends JPanel {
 		return fpsTimer;
 	}
 
-	public ActionListener getEventListener() {
-		return eventListener;
-	}
-
 	public KeyListener getKeyboardControls() {
 		return keyboardControls;
 	}
-	
-	
+
+	public Resolution getGameResolution() {
+		return gameResolution;
+	}
+
+	public void setGameResolution(Resolution gameResolution) {
+		this.gameResolution = gameResolution;
+	}
 
 }

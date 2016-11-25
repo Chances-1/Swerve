@@ -1,4 +1,4 @@
-package com.swerve.utils;
+package com.chances_Api.common.utils;
 
 import java.util.Random;
 

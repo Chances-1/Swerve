@@ -1,8 +1,8 @@
-package com.swerve.common;
+package com.chances_Api.common.game.entity.factories;
 
 import java.util.List;
 
-import com.swerve.objects.entity.BaseRectEntity;
+import com.chances_Api.common.game.entity.entities.BaseRectEntity;
 
 public abstract class BaseEntityFactory<T extends BaseRectEntity>{
 	
@@ -10,10 +10,7 @@ public abstract class BaseEntityFactory<T extends BaseRectEntity>{
 	
 	private int windowHeight;
 	
-	protected BaseEntityFactory(int windowWidth, int windowHeight) {
-		super();
-		this.windowWidth = windowWidth;
-		this.windowHeight = windowHeight;
+	protected BaseEntityFactory() {
 	}
 
 	protected abstract T create();

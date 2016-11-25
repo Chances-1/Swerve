@@ -5,9 +5,9 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import com.swerve.objects.entity.BaseRectEntity;
+import com.chances_Api.common.game.entity.entities.BaseRectEntity;
+import com.chances_Api.common.game.properties.enums.Direction;
 import com.swerve.objects.entity.bullet.Bullet;
-import com.swerve.properties.Direction;
 
 public class PlayerCharacter extends BaseRectEntity {
 
@@ -27,6 +27,7 @@ public class PlayerCharacter extends BaseRectEntity {
 
 	public PlayerCharacter() {
 		this.bullets = new ArrayList<Bullet>();
+		this.entityColor = Color.ORANGE;
 	}
 
 	/**
@@ -40,7 +41,8 @@ public class PlayerCharacter extends BaseRectEntity {
 	}
 
 	private void drawPlayerCharacter(Graphics2D g2d) {
-		g2d.setColor(Color.ORANGE);
+		
+		g2d.setColor(entityColor);
 		g2d.fill(this);
 	}
 
@@ -57,8 +59,7 @@ public class PlayerCharacter extends BaseRectEntity {
 
 			b.x = (int) (this.getX() + this.getWidth());
 			b.y = (int) this.getCenterY();
-			b.setWindowWidth(windowWidth);
-			b.setWindowHeight(windowHeight);
+			b.setEntityColor(Color.BLUE);
 			b.setEntityMovementDirection(Direction.EAST);
 
 			bullets.add(b);
