@@ -2,8 +2,8 @@ package com.swerve.objects.entity.enemy;
 
 import java.awt.Color;
 
-import com.chances_Api.common.game.entity.entities.BaseRectEntity;
-import com.chances_Api.common.game.properties.enums.Direction;
+import com.chances.api.common.game.entity.entities.BaseRectEntity;
+import com.chances.api.common.game.properties.enums.Direction;
 
 public class Enemy extends BaseRectEntity {
 

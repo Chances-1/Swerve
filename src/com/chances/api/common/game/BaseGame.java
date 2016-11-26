@@ -1,4 +1,4 @@
-package com.chances_Api.common.game;
+package com.chances.api.common.game;
 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -7,8 +7,8 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import com.chances_Api.common.game.properties.constants.GameConstants;
-import com.chances_Api.common.game.properties.enums.Resolution;
+import com.chances.api.common.game.properties.constants.GameConstants;
+import com.chances.api.common.game.properties.enums.Resolution;
 
 public abstract class BaseGame extends JPanel {
 

@@ -3,8 +3,8 @@ package com.swerve.objects.entity.bullet;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import com.chances_Api.common.game.entity.entities.BaseRectEntity;
-import com.chances_Api.common.game.properties.enums.Direction;
+import com.chances.api.common.game.entity.entities.BaseRectEntity;
+import com.chances.api.common.game.properties.enums.Direction;
 
 public class Bullet extends BaseRectEntity {
 

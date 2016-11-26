@@ -1,4 +1,4 @@
-package com.chances_Api.common.utils;
+package com.chances.api.common.utils;
 
 import java.util.Random;
 

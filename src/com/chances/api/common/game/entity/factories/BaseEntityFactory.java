@@ -1,8 +1,8 @@
-package com.chances_Api.common.game.entity.factories;
+package com.chances.api.common.game.entity.factories;
 
 import java.util.List;
 
-import com.chances_Api.common.game.entity.entities.BaseRectEntity;
+import com.chances.api.common.game.entity.entities.BaseRectEntity;
 
 public abstract class BaseEntityFactory<T extends BaseRectEntity>{
 	

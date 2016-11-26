@@ -3,7 +3,7 @@ package com.swerve.objects.entity.enemy;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.chances_Api.common.game.entity.factories.BaseEntityFactory;
+import com.chances.api.common.game.entity.factories.BaseEntityFactory;
 
 public class EnemyFactory extends BaseEntityFactory<Enemy> {
 

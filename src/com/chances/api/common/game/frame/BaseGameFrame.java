@@ -1,4 +1,4 @@
-package com.chances_Api.common.game.frame;
+package com.chances.api.common.game.frame;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import com.chances_Api.common.game.BaseGame;
+import com.chances.api.common.game.BaseGame;
 
 public class BaseGameFrame extends JFrame {
 

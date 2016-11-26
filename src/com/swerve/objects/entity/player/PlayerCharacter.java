@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import com.chances_Api.common.game.entity.entities.BaseRectEntity;
-import com.chances_Api.common.game.properties.enums.Direction;
+import com.chances.api.common.game.entity.entities.BaseRectEntity;
+import com.chances.api.common.game.properties.enums.Direction;
 import com.swerve.objects.entity.bullet.Bullet;
 
 public class PlayerCharacter extends BaseRectEntity {

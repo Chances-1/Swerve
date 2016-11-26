@@ -1,4 +1,4 @@
-package com.chances_Api.common.game.entity.entities;
+package com.chances.api.common.game.entity.entities;
 
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-import com.chances_Api.common.game.properties.constants.GameConstants;
-import com.chances_Api.common.game.properties.enums.Direction;
+import com.chances.api.common.game.properties.constants.GameConstants;
+import com.chances.api.common.game.properties.enums.Direction;
 
 public abstract class BaseRectEntity extends Rectangle {
 

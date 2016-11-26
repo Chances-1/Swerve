@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import com.chances_Api.common.game.entity.entities.BaseRectEntity;
-import com.chances_Api.common.utils.RNG;
+import com.chances.api.common.game.entity.entities.BaseRectEntity;
+import com.chances.api.common.utils.RNG;
 
 public class Star extends BaseRectEntity {
 

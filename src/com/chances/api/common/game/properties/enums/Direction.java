@@ -1,4 +1,4 @@
-package com.chances_Api.common.game.properties.enums;
+package com.chances.api.common.game.properties.enums;
 
 import java.util.ArrayList;
 import java.util.List;

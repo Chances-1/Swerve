@@ -2,10 +2,10 @@ package com.swerve.main;
 
 import javax.swing.Timer;
 
-import com.chances_Api.common.game.frame.BaseGameFrame;
+import com.chances.api.common.game.frame.BaseGameFrame;
 import com.swerve.display.Swerve;
 
-public class MainClass {
+public class GameDriver {
 	
 	public static Swerve swervePanel = new Swerve();
 	

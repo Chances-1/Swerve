@@ -1,6 +1,6 @@
-package com.chances_Api.common.game.properties.constants;
+package com.chances.api.common.game.properties.constants;
 
-import com.chances_Api.common.game.properties.enums.Resolution;
+import com.chances.api.common.game.properties.enums.Resolution;
 
 public class GameConstants {
 	

@@ -10,10 +10,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
 
-import com.chances_Api.common.game.BaseGame;
-import com.chances_Api.common.game.properties.constants.GameConstants;
-import com.chances_Api.common.game.properties.enums.Direction;
-import com.chances_Api.common.game.properties.enums.Resolution;
+import com.chances.api.common.game.BaseGame;
+import com.chances.api.common.game.properties.constants.GameConstants;
+import com.chances.api.common.game.properties.enums.Direction;
+import com.chances.api.common.game.properties.enums.Resolution;
 import com.swerve.objects.entity.enemy.Enemy;
 import com.swerve.objects.entity.player.PlayerCharacter;
 import com.swerve.objects.entity.stars.Starfield;
