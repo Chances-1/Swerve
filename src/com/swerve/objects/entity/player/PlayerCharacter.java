@@ -89,7 +89,6 @@ public class PlayerCharacter extends BaseRectEntity {
 		this.isFiring = isFiring;
 	}
 
-	@Override
 	public void update() {
 		move();
 		stopCrossBorder();

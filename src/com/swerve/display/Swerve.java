@@ -3,15 +3,11 @@ package com.swerve.display;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
 
 import com.chances.api.common.game.BaseGame;
-import com.chances.api.common.game.properties.constants.GameConstants;
 import com.chances.api.common.game.properties.enums.Direction;
 import com.chances.api.common.game.properties.enums.Resolution;
 import com.swerve.objects.entity.enemy.Enemy;
@@ -50,7 +46,7 @@ public class Swerve extends BaseGame {
 		initKeyboardControls();
 
 	}
-	
+
 	/**
 	 * Overrides
 	 */
@@ -58,7 +54,8 @@ public class Swerve extends BaseGame {
 	@Override
 	public void update() {
 
-		setCurrentFrame(getCurrentFrame()+1);;
+		setCurrentFrame(getCurrentFrame() + 1);
+		;
 		if (getCurrentFrame() == getFPS()) {
 			setCurrentFrame(0);
 		}
@@ -83,7 +80,7 @@ public class Swerve extends BaseGame {
 		if (null != player)
 			drawPlayerCharacter(g2d);
 	}
-	
+
 	/**
 	 * Initializers
 	 */
@@ -111,7 +108,7 @@ public class Swerve extends BaseGame {
 	private void initEnemyFactory() {
 
 	}
-	
+
 	private void initKeyboardControls() {
 
 		this.setFocusable(true); // set to make sure panel is focused (needed
@@ -213,8 +210,8 @@ public class Swerve extends BaseGame {
 		starfield.draw(g2d, this);
 	}
 
-	private void drawEnemies(){
-		
+	private void drawEnemies() {
+
 	}
 
 }
